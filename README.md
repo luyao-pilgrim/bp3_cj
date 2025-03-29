@@ -22,25 +22,49 @@
 
 ```json
 {
+  "api": {
+    "privateKey": "YOUR_PRIVATE_KEY",   // 私钥
+    "publicKey": "YOUR_PUBLIC_KEY"      // 公钥
+  },
   "trading": {
-    "tradingCoin": "BTC",           // 交易币种
-    "initialPrice": 50000,          // 初始价格
-    "takeProfitPercentage": 5,      // 止盈百分比
-    "maxDropPercentage": 10,        // 最大跌幅百分比
-    "totalAmount": 1000,            // 总投资金额（USDC）
-    "orderCount": 5,                // 买入次数
-    "incrementPercentage": 10       // 每次买入递增百分比
+    "tradingCoin": "BTC",               // 交易币种
+    "maxDropPercentage": 7,             // 最大跌幅百分比
+    "totalAmount": 1000,                // 总投资金额（USDC）
+    "orderCount": 9,                    // 买入订单数量
+    "incrementPercentage": 50,          // 每次买入递增百分比
+    "takeProfitPercentage": 0.2         // 止盈百分比
   },
   "actions": {
-    "autoRestartAfterTakeProfit": true,  // 止盈后是否自动重启
-    "autoRestartNoFill": true,           // 无订单成交是否自动重启
-    "autoCancelOrders": true             // 是否自动取消未成交订单
+    "sellNonUsdcAssets": true,          // 是否卖出非USDC资产
+    "cancelAllOrders": true,            // 是否取消所有订单
+    "restartAfterTakeProfit": true,     // 止盈后是否自动重启
+    "autoRestartNoFill": true           // 无订单成交是否自动重启
   },
   "advanced": {
-    "noFillRestartMinutes": 60,          // 无订单成交重启等待时间（分钟）
-    "orderCheckInterval": 600000,        // 订单检查间隔（毫秒）
-    "priceCheckInterval": 60000,         // 价格检查间隔（毫秒）
-    "maxRetries": 3                      // 最大重试次数
+    "minOrderAmount": 10,               // 最小订单金额
+    "priceTickSize": 0.01,              // 价格最小变动单位
+    "checkOrdersIntervalMinutes": 10,   // 订单检查间隔（分钟）
+    "monitorIntervalSeconds": 15,       // 监控间隔（秒）
+    "sellNonUsdcMinValue": 10,          // 非USDC资产最小卖出价值
+    "noFillRestartMinutes": 3           // 无成交重启等待时间（分钟）
+  },
+  "quantityPrecisions": {               // 数量精度设置
+    "BTC": 5,
+    "ETH": 4,
+    "SOL": 2,
+    "DEFAULT": 2
+  },
+  "pricePrecisions": {                  // 价格精度设置
+    "BTC": 0,
+    "ETH": 2,
+    "SOL": 2,
+    "DEFAULT": 2
+  },
+  "minQuantities": {                    // 最小数量设置
+    "BTC": 0.00001,
+    "ETH": 0.001,
+    "SOL": 0.01,
+    "DEFAULT": 0.1
   }
 }
 ```
@@ -77,21 +101,24 @@ Backpack 交易所 API 客户端，处理：
    - 开始监控价格和订单
 
 2. **交易策略**：
-   - 在初始价格基础上，按递增比例创建多个买入订单
-   - 监控订单成交情况
-   - 达到止盈目标时自动卖出
-   - 超过最大跌幅时自动止损
+   - 系统会根据配置的参数自动创建多个买入订单
+   - 订单价格根据递增百分比逐步降低
+   - 监控订单成交情况和市场价格
+   - 当成交订单达到止盈目标时自动卖出
+   - 当价格下跌超过最大跌幅时进行风险控制
 
 3. **风险控制**：
    - 设置最大跌幅限制
    - 自动取消未成交订单
    - 定期检查订单状态
    - 异常情况自动重启
+   - 精确追踪已成交订单
 
 4. **自动重启机制**：
-   - 止盈后自动重启
+   - 止盈后自动重启新一轮交易
    - 无订单成交自动重启
    - 异常退出自动重启
+   - 重启时会重置所有订单记录
 
 ## 使用方法
 
@@ -124,39 +151,51 @@ Backpack 交易所 API 客户端，处理：
    - 注意资金安全
 
 2. **配置建议**：
-   - 初始价格建议设置为当前市价
-   - 止盈目标建议 3-5%
-   - 最大跌幅建议 10-15%
-   - 买入次数建议 3-5 次
+   - 交易币种选择流动性好的币种
+   - 最大跌幅建议 5-10%
+   - 订单数量建议 5-10 个
+   - 递增百分比建议 30-50%
+   - 止盈百分比根据市场波动性调整
 
-3. **运行环境**：
-   - Node.js 环境
-   - 稳定的网络连接
-   - 足够的系统资源
+3. **API密钥**：
+   - 需要提供有效的Backpack交易所API密钥
+   - 私钥和公钥必须正确配对
+   - 确保API密钥有足够的权限
 
-4. **日志管理**：
-   - 定期检查日志文件
-   - 及时处理错误信息
-   - 保留重要交易记录
+4. **精度设置**：
+   - 不同币种有不同的数量和价格精度要求
+   - 可以在配置文件中为每种币种设置特定精度
+   - 如果币种没有特定设置，将使用DEFAULT值
 
 ## 常见问题
 
-1. **程序无法启动**：
-   - 检查配置文件格式
-   - 确认 API 密钥正确
-   - 验证网络连接
+1. **API密钥问题**：
+   - 确保提供的私钥和公钥格式正确
+   - 验证API密钥是否有足够权限
+   - 检查密钥是否已过期
 
 2. **订单未成交**：
-   - 检查价格设置
-   - 确认市场流动性
-   - 查看订单状态
+   - 检查价格设置是否合理
+   - 确认市场流动性是否足够
+   - 查看订单状态和日志
 
-3. **程序异常退出**：
+3. **统计数据不准确**：
+   - 检查日志中的订单跟踪信息
+   - 重启系统以重置所有统计数据
+   - 确认所有订单记录已正确清除
+
+4. **系统异常退出**：
    - 检查错误日志
    - 验证系统资源
-   - 确认网络状态
+   - 确认网络连接稳定
 
 ## 更新日志
+
+### v1.0.1
+- 优化订单追踪机制
+- 修复统计数据问题
+- 改进重启功能
+- 增强日志系统
 
 ### v1.0.0
 - 初始版本发布
