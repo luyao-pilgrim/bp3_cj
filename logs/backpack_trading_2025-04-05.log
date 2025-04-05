@@ -1,0 +1,46 @@
+[2025/4/5 20:45:55] === Backpack 自动化交易系统启动 ===
+[2025/4/5 20:45:55] Node.js版本: v22.13.0
+[2025/4/5 20:45:55] WorkingDir: /Users/m4-2/Documents/fabu/fabumadiing
+[2025/4/5 20:45:55] 脚本基本路径: /Users/m4-2/Documents/fabu/fabumadiing/src
+[2025/4/5 20:45:55] 读取配置文件: /Users/m4-2/Documents/fabu/fabumadiing/backpack_trading_config.json
+[2025/4/5 20:45:55] 交易币种: BTC
+[2025/4/5 20:45:55] 总投资额: 2500 USDC
+[2025/4/5 20:45:55] 订单数量: 8
+[2025/4/5 20:45:55] 程序执行出错: 私钥处理错误: 私钥长度不足
+[2025/4/5 20:45:55] 错误堆栈: Error: 私钥处理错误: 私钥长度不足
+    at toPkcs8der (/Users/m4-2/Documents/fabu/fabumadiing/backpack_exchange-main/backpack_client.js:92:15)
+    at new BackpackClient (/Users/m4-2/Documents/fabu/fabumadiing/backpack_exchange-main/backpack_client.js:211:30)
+    at new BackpackService (/Users/m4-2/Documents/fabu/fabumadiing/src/services/backpackService.js:25:19)
+    at new TradingApp (/Users/m4-2/Documents/fabu/fabumadiing/src/app.js:24:28)
+    at main (/Users/m4-2/Documents/fabu/fabumadiing/src/index.js:57:21)
+    at Object.<anonymous> (/Users/m4-2/Documents/fabu/fabumadiing/src/index.js:152:1)
+    at Module._compile (node:internal/modules/cjs/loader:1562:14)
+    at Object..js (node:internal/modules/cjs/loader:1699:10)
+    at Module.load (node:internal/modules/cjs/loader:1313:32)
+    at Function._load (node:internal/modules/cjs/loader:1123:12)
+[2025/4/5 20:45:55] 程序执行完成，退出
+[2025/4/5 20:45:55] 清理资源...
+[2025/4/5 20:45:55] 程序退出，退出码: 0
+[2025/4/5 21:02:12] === Backpack 自动化交易系统启动 ===
+[2025/4/5 21:02:12] Node.js版本: v22.14.0
+[2025/4/5 21:02:12] WorkingDir: D:\fabu2\mading2
+[2025/4/5 21:02:12] 脚本基本路径: D:\fabu2\mading2\src
+[2025/4/5 21:02:12] 读取配置文件: D:\fabu2\mading2\backpack_trading_config.json
+[2025/4/5 21:02:12] 交易币种: BTC
+[2025/4/5 21:02:12] 总投资额: 2500 USDC
+[2025/4/5 21:02:12] 订单数量: 8
+[2025/4/5 21:02:12] 程序执行出错: 私钥处理错误: 私钥长度不足
+[2025/4/5 21:02:12] 错误堆栈: Error: 私钥处理错误: 私钥长度不足
+    at toPkcs8der (D:\fabu2\mading2\backpack_exchange-main\backpack_client.js:92:15)
+    at new BackpackClient (D:\fabu2\mading2\backpack_exchange-main\backpack_client.js:211:30)
+    at new BackpackService (D:\fabu2\mading2\src\services\backpackService.js:25:19)
+    at new TradingApp (D:\fabu2\mading2\src\app.js:24:28)
+    at main (D:\fabu2\mading2\src\index.js:57:21)
+    at Object.<anonymous> (D:\fabu2\mading2\src\index.js:152:1)
+    at Module._compile (node:internal/modules/cjs/loader:1554:14)
+    at Object..js (node:internal/modules/cjs/loader:1706:10)
+    at Module.load (node:internal/modules/cjs/loader:1289:32)
+    at Function._load (node:internal/modules/cjs/loader:1108:12)
+[2025/4/5 21:02:12] 程序执行完成，退出
+[2025/4/5 21:02:12] 清理资源...
+[2025/4/5 21:02:12] 程序退出，退出码: 0

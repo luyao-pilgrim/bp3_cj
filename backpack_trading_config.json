@@ -1,15 +1,15 @@
 {
     "api": {
-        "privateKey": "kwWC9ucdxa8WQI=",
-        "publicKey": "bNBdOFfG2IJHKM="
+        "privateKey": "&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&",
+        "publicKey": "&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&"
     },
     "trading": {
         "tradingCoin": "BTC",
         "maxDropPercentage": 7,
-        "totalAmount": 1000,
-        "orderCount": 9,
+        "totalAmount": 2500,
+        "orderCount": 8,
         "incrementPercentage": 50,
-        "takeProfitPercentage": 0.2
+        "takeProfitPercentage": 0.5
     },
     "actions": {
         "sellNonUsdcAssets": true,
@@ -23,7 +23,7 @@
         "checkOrdersIntervalMinutes": 10,
         "monitorIntervalSeconds": 15,
         "sellNonUsdcMinValue": 10,
-        "noFillRestartMinutes": 3
+        "noFillRestartMinutes": 1
     },
     "quantityPrecisions": {
         "BTC": 5,
@@ -42,5 +42,18 @@
         "ETH": 0.001,
         "SOL": 0.01,
         "DEFAULT": 0.1
+    },
+    "websocket": {
+        "url": "wss://ws.backpack.exchange",
+        "options": {
+            "reconnect": true,
+            "reconnectInterval": 5000,
+            "maxReconnectAttempts": 5,
+            "pingInterval": 60000,
+            "pongTimeout": 120000,
+            "subscriptionTimeout": 5000,
+            "messageQueueSize": 1000,
+            "messageTimeout": 30000
+        }
     }
 } 
