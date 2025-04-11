@@ -1,0 +1,23 @@
+[2025/4/9 23:05:13] === Backpack 自动化交易系统启动 ===
+[2025/4/9 23:05:13] Node.js版本: v20.11.0
+[2025/4/9 23:05:13] WorkingDir: D:\桌面\bp3_cj\src
+[2025/4/9 23:05:13] 脚本基本路径: D:\桌面\bp3_cj\src
+[2025/4/9 23:05:13] 读取配置文件: D:\桌面\bp3_cj\backpack_trading_config.json
+[2025/4/9 23:05:13] 交易币种: BTC
+[2025/4/9 23:05:13] 总投资额: 2500 USDC
+[2025/4/9 23:05:13] 订单数量: 8
+[2025/4/9 23:05:13] 程序执行出错: 私钥处理错误: 私钥长度不足
+[2025/4/9 23:05:13] 错误堆栈: Error: 私钥处理错误: 私钥长度不足
+    at toPkcs8der (D:\桌面\bp3_cj\backpack_exchange-main\backpack_client.js:92:15)
+    at new BackpackClient (D:\桌面\bp3_cj\backpack_exchange-main\backpack_client.js:211:30)
+    at new BackpackService (D:\桌面\bp3_cj\src\services\backpackService.js:25:19)
+    at new TradingApp (D:\桌面\bp3_cj\src\app.js:24:28)
+    at main (D:\桌面\bp3_cj\src\index.js:57:21)
+    at Object.<anonymous> (D:\桌面\bp3_cj\src\index.js:152:1)
+    at Module._compile (node:internal/modules/cjs/loader:1376:14)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1435:10)
+    at Module.load (node:internal/modules/cjs/loader:1207:32)
+    at Module._load (node:internal/modules/cjs/loader:1023:12)
+[2025/4/9 23:05:13] 程序执行完成，退出
+[2025/4/9 23:05:13] 清理资源...
+[2025/4/9 23:05:13] 程序退出，退出码: 0
